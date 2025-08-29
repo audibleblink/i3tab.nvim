@@ -1,0 +1,178 @@
+*pill-tabline.txt*                    Pill-style tabline for Neovim
+
+                            PILL-TABLINE NVIM
+
+            A minimalist pill-style tabline plugin for Neovim
+
+                                       Type |gO| to see the table of contents.
+
+==============================================================================
+Table of Contents                                    *pill-tabline-contents*
+
+1. Introduction.................................|pill-tabline-intro|
+2. Installation.................................|pill-tabline-installation|
+3. Configuration................................|pill-tabline-configuration|
+4. Mappings.....................................|pill-tabline-mappings|
+5. API..........................................|pill-tabline-api|
+6. Health Checks................................|pill-tabline-health|
+
+==============================================================================
+1. Introduction                                         *pill-tabline-intro*
+
+Pill-tabline.nvim provides a clean, pill-style tabline for Neovim with 
+automatic theme integration and minimal configuration requirements.
+
+Features:
+- Zero-config setup with smart defaults
+- Automatic theme integration (base46)
+- Configurable appearance and behavior
+- <Plug> mappings for user-defined keybinds
+- Health checks for troubleshooting
+
+==============================================================================
+2. Installation                                  *pill-tabline-installation*
+
+Using lazy.nvim:
+>lua
+    {
+      "your-username/pill-tabline.nvim",
+      config = function()
+        require("pill-tabline").setup({
+          -- optional configuration
+        })
+      end
+    }
+<
+
+Using packer.nvim:
+>lua
+    use {
+      "your-username/pill-tabline.nvim",
+      config = function()
+        require("pill-tabline").setup()
+      end
+    }
+<
+
+==============================================================================
+3. Configuration                              *pill-tabline-configuration*
+
+The plugin works out of the box without any configuration. All settings
+are optional:
+
+>lua
+    require("pill-tabline").setup({
+      -- Show tab numbers
+      show_numbers = true,
+      
+      -- Show close button on tabs (future feature)
+      show_close_button = false,
+      
+      -- Separator style: "pill", "round", "square"
+      separator_style = "pill",
+      
+      -- Hide tabline when only one tab
+      auto_hide = false,
+      
+      -- Close tab on middle click (future feature)
+      close_on_middle_click = true,
+      
+      -- Custom colors (nil = auto-detect from theme)
+      colors = {
+        active = { fg = nil, bg = nil },
+        inactive = { fg = nil, bg = nil },
+      },
+      
+      -- Theme integration
+      theme_integration = {
+        base46 = true,     -- NvChad base46
+      },
+    })
+<
+
+                                              *pill-tabline-config-options*
+
+show_numbers~
+    Type: boolean
+    Default: `true`
+    Show tab numbers in the tabline.
+
+separator_style~
+    Type: string
+    Default: `"pill"`
+    Style of separators. Options: "pill", "round", "square"
+
+auto_hide~
+    Type: boolean
+    Default: `false`
+    Hide the tabline when there's only one tab.
+
+colors~
+    Type: table
+    Customize colors for active/inactive tabs. Setting to `nil` uses
+    theme auto-detection.
+
+theme_integration~
+    Type: table
+    Enable/disable integration with specific themes.
+
+==============================================================================
+4. Mappings                                        *pill-tabline-mappings*
+
+The plugin provides <Plug> mappings that you can bind to your preferred keys:
+
+                                              *<Plug>(PillTablineToggle)*
+<Plug>(PillTablineToggle)    Toggle tabline visibility
+
+                                              *<Plug>(PillTablineNext)*
+<Plug>(PillTablineNext)      Go to next tab
+
+                                              *<Plug>(PillTablinePrev)*
+<Plug>(PillTablinePrev)      Go to previous tab
+
+                                              *<Plug>(PillTablineNew)*
+<Plug>(PillTablineNew)       Create new tab
+
+Example mappings:
+>lua
+    vim.keymap.set("n", "<leader>tt", "<Plug>(PillTablineToggle)")
+    vim.keymap.set("n", "]t", "<Plug>(PillTablineNext)")
+    vim.keymap.set("n", "[t", "<Plug>(PillTablinePrev)")
+    vim.keymap.set("n", "<leader>tn", "<Plug>(PillTablineNew)")
+<
+
+==============================================================================
+5. API                                                *pill-tabline-api*
+
+                                              *pill-tabline.setup()*
+pill-tabline.setup({opts})
+    Configure the plugin. See |pill-tabline-configuration| for options.
+
+                                              *pill-tabline.toggle_tabline()*
+pill-tabline.toggle_tabline()
+    Toggle tabline visibility between shown (2) and hidden (0).
+
+                                              *pill-tabline.get_config()*
+pill-tabline.get_config()
+    Get the current configuration table.
+
+                                              *pill-tabline.refresh()*
+pill-tabline.refresh()
+    Refresh highlight groups and redraw the tabline. Useful after
+    changing color schemes.
+
+==============================================================================
+6. Health Checks                                     *pill-tabline-health*
+
+Run health checks to troubleshoot issues:
+>
+    :checkhealth pill-tabline
+<
+
+The health check will verify:
+- Configuration validity
+- Theme integration status
+- Highlight group definitions
+- Tabline setup
+
+vim:tw=78:ts=8:sw=4:sts=4:et:ft=help:norl:
