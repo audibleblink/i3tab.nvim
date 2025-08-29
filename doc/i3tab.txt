@@ -1,0 +1,192 @@
+*i3tab.txt*                    i3-style tabline for Neovim
+
+                            i3tab NVIM
+
+            A minimalist i3-like tabline plugin for Neovim
+
+                                       Type |gO| to see the table of contents.
+
+==============================================================================
+Table of Contents                                    *i3tab-contents*
+
+1. Introduction.................................|i3tab-intro|
+2. Installation.................................|i3tab-installation|
+3. Configuration................................|i3tab-configuration|
+4. Mappings.....................................|i3tab-mappings|
+5. API..........................................|i3tab-api|
+6. Health Checks................................|i3tab-health|
+
+==============================================================================
+1. Introduction                                         *i3tab-intro*
+
+i3tab.nvim provides a clean, i3-style tabline for Neovim with 
+automatic theme integration and minimal configuration requirements.
+
+Features:
+- Zero-config setup with smart defaults
+- Automatic theme integration (base46)
+- Configurable appearance and behavior
+- <Plug> mappings for user-defined keybinds
+- Health checks for troubleshooting
+
+==============================================================================
+2. Installation                                  *i3tab-installation*
+
+Using lazy.nvim:
+>lua
+    {
+      "your-username/i3tab.nvim",
+      config = function()
+        require("i3tab").setup({
+          -- optional configuration
+        })
+      end
+    }
+<
+
+Using packer.nvim:
+>lua
+    use {
+      "your-username/i3tab.nvim",
+      config = function()
+        require("i3tab").setup()
+      end
+    }
+<
+
+==============================================================================
+3. Configuration                              *i3tab-configuration*
+
+The plugin works out of the box without any configuration. All settings
+are optional:
+
+>lua
+    require("i3tab").setup({
+      -- Tab number padding (empty string = no padding)
+      padding = "",
+      
+      -- Spacing between tabs
+      spacing = " ",
+      
+      -- Show tab numbers
+      show_numbers = true,
+      
+      -- Separator style: "arrow", "round", "tab", "dot", "dot2", "ramp", "none"
+      separator_style = "pill",
+      
+      -- Tabline position: "left", "center", "right"
+      position = "center",
+      
+      -- Custom colors (nil = auto-detect from theme)
+      colors = {
+        active = { fg = nil, bg = nil },
+        inactive = { fg = nil, bg = nil },
+      },
+      
+      -- Theme integration
+      theme_integration = {
+        base46 = false,     -- NvChad base46 (disabled by default)
+      },
+    })
+<
+
+                                              *i3tab-config-options*
+
+padding~
+    Type: string
+    Default: `""`
+    Padding around tab numbers. Empty string means no padding.
+
+spacing~
+    Type: string
+    Default: `" "`
+    Spacing between tabs in the tabline.
+
+show_numbers~
+    Type: boolean
+    Default: `true`
+    Show tab numbers in the tabline.
+
+separator_style~
+    Type: string
+    Default: `"round"`
+    Style of separators. Available options:
+    - "arrow" - Arrow-style separators (  )
+    - "round" - Rounded separators (  )
+    - "tab" - Tab-style separators (  )
+    - "dot" - Dot separators ( )
+    - "dot2" - Alternative dot separators ( )
+    - "ramp" - Ramp-style separators (  )
+    - "none" - No separators
+
+position~
+    Type: string
+    Default: `"center"`
+    Position of the tabline. Options: "left", "center", "right"
+
+colors~
+    Type: table
+    Customize colors for active/inactive tabs. Setting to `nil` uses
+    theme auto-detection.
+
+theme_integration~
+    Type: table
+    Enable/disable integration with specific themes. base46 integration
+    is disabled by default.
+
+==============================================================================
+4. Mappings                                        *i3tab-mappings*
+
+The plugin provides <Plug> mappings that you can bind to your preferred keys:
+
+                                              *<Plug>(i3tabToggle)*
+<Plug>(i3tabToggle)    Toggle tabline visibility
+
+                                              *<Plug>(i3tabNext)*
+<Plug>(i3tabNext)      Go to next tab
+
+                                              *<Plug>(i3tabPrev)*
+<Plug>(i3tabPrev)      Go to previous tab
+
+                                              *<Plug>(i3tabNew)*
+<Plug>(i3tabNew)       Create new tab
+
+Example mappings:
+>lua
+    vim.keymap.set("n", "<leader>tt", "<Plug>(i3tabToggle)")
+    vim.keymap.set("n", "]t", "<Plug>(i3tabNext)")
+    vim.keymap.set("n", "[t", "<Plug>(i3tabPrev)")
+    vim.keymap.set("n", "<leader>tn", "<Plug>(i3tabNew)")
+<
+
+==============================================================================
+5. API                                                *i3tab-api*
+
+                                              *i3tab.setup()*
+i3tab.setup({opts})
+    Configure the plugin. See |i3tab-configuration| for options.
+
+                                              *i3tab.toggle_tabline()*
+i3tab.toggle_tabline()
+    Toggle tabline visibility between shown (2) and hidden (0).
+
+                                              *i3tab.refresh()*
+i3tab.refresh()
+    Refresh highlight groups and redraw the tabline. Useful after
+    changing color schemes.
+
+==============================================================================
+6. Health Checks                                     *i3tab-health*
+
+Run health checks to troubleshoot issues:
+>
+    :checkhealth i3tab
+<
+
+The health check will verify:
+- Configuration validity
+- Theme integration status
+- Highlight group definitions
+- Tabline setup
+
+vim:tw=78:ts=8:sw=4:sts=4:et:ft=help:norl:

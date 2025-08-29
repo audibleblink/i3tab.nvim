@@ -2,15 +2,14 @@ local M = {}
 local health = vim.health
 
 function M.check()
-	health.start("pill-tabline.nvim")
+	health.start("i3tab.nvim")
 
-	local config = require("pill-tabline.config")
+	local config = require("i3tab.config")
 	local opts = config.options
 
 	health.info("Configuration:")
 	health.info("  show_numbers: " .. tostring(opts.show_numbers))
 	health.info("  separator_style: " .. opts.separator_style)
-	health.info("  auto_hide: " .. tostring(opts.auto_hide))
 
 	local base46_ok, base46 = pcall(require, "base46")
 	if opts.theme_integration.base46 then
@@ -23,19 +22,18 @@ function M.check()
 		health.info("base46 integration: disabled")
 	end
 
-	if vim.o.tabline:find("pill%-tabline") then
-		health.ok("tabline is set to pill-tabline")
+	if vim.o.tabline:find("i3tab") then
+		health.ok("tabline is set to i3tab")
 	else
-		health.warn("tabline is not set to pill-tabline: " .. vim.o.tabline)
+		health.warn("tabline is not set to i3tab: " .. vim.o.tabline)
 	end
 
 	local highlight_groups = {
-		"TabLinePillActiveLeft",
-		"TabLinePillActiveText",
-		"TabLinePillActiveRight",
-		"TabLinePillInactiveLeft",
-		"TabLinePillInactiveText",
-		"TabLinePillInactiveRight",
+		"i3tabInactiveSym",
+		"i3tabInactiveText",
+		"i3tabActiveText",
+		"i3tabActiveSym",
+		"i3tabPad",
 	}
 
 	local missing_highlights = {}
@@ -54,4 +52,3 @@ function M.check()
 end
 
 return M
-

@@ -1,6 +1,7 @@
+local config = require("i3tab.config")
+local tabline = require("i3tab.tabline")
+
 local M = {}
-local config = require("pill-tabline.config")
-local tabline = require("pill-tabline.tabline")
 
 function M.setup(opts)
 	config.setup(opts)
@@ -15,4 +16,3 @@ function M.refresh()
 end
 
 return M
-
