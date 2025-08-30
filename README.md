@@ -33,8 +33,8 @@ require("i3tab").setup({
 	padding = "",
     -- spacing between tabs
 	spacing = " ",
-    -- pill, round, ramp, arrow, dot, dot2
-	separator_style = "pill",
+    -- round, ramp, arrow, dot, dot2, tab, none
+	separator_style = "round",
     -- left, center, right
 	position = "center",
     -- color overrides, if not using theme_integration
@@ -57,10 +57,6 @@ The plugin provides `<Plug>` mappings for you to bind to your preferred keys:
 -- Toggle tabline visibility
 vim.keymap.set("n", "<leader>tt", "<Plug>(i3tabToggle)")
 
--- Tab navigation
-vim.keymap.set("n", "]t", "<Plug>(i3tabNext)")
-vim.keymap.set("n", "[t", "<Plug>(i3tabPrev)")
-vim.keymap.set("n", "<leader>tn", "<Plug>(i3tabNew)")
 ```
 
 ## 🔧 API
