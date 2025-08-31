@@ -37,6 +37,16 @@ require("i3tab").setup({
 	separator_style = "round",
     -- left, center, right
 	position = "center",
+    -- custom separator characters (optional)
+	separators = {
+		arrow = { left = "", right = "" },
+		round = { left = "", right = "" },
+		tab = { left = "", right = "" },
+		dot = { left = "", right = "" },
+		dot2 = { left = "", right = "" },
+		ramp = { left = "", right = "" },
+		none = { left = "", right = "" },
+	},
     -- color overrides, if not using theme_integration
 	colors = {
 		active = { fg = nil, bg = nil },

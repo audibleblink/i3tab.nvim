@@ -61,33 +61,44 @@ The plugin works out of the box without any configuration. All settings
 are optional:
 
 >lua
-    require("i3tab").setup({
-      -- Tab number padding (empty string = no padding)
-      padding = "",
-      
-      -- Spacing between tabs
-      spacing = " ",
-      
-      -- Show tab numbers
-      show_numbers = true,
-      
-      -- Separator style: "arrow", "round", "tab", "dot", "dot2", "ramp", "none"
-      separator_style = "pill",
-      
-      -- Tabline position: "left", "center", "right"
-      position = "center",
-      
-      -- Custom colors (nil = auto-detect from theme)
-      colors = {
-        active = { fg = nil, bg = nil },
-        inactive = { fg = nil, bg = nil },
-      },
-      
-      -- Theme integration
-      theme_integration = {
-        base46 = false,     -- NvChad base46 (disabled by default)
-      },
-    })
+     require("i3tab").setup({
+       -- Tab number padding (empty string = no padding)
+       padding = "",
+       
+       -- Spacing between tabs
+       spacing = " ",
+       
+       -- Show tab numbers
+       show_numbers = true,
+       
+       -- Separator style: "arrow", "round", "tab", "dot", "dot2", "ramp", "none"
+       separator_style = "round",
+       
+       -- Tabline position: "left", "center", "right"
+       position = "center",
+       
+       -- Custom separator characters (optional)
+       separators = {
+         arrow = { left = "", right = "" },
+         round = { left = "", right = "" },
+         tab = { left = "", right = "" },
+         dot = { left = "", right = "" },
+         dot2 = { left = "", right = "" },
+         ramp = { left = "", right = "" },
+         none = { left = "", right = "" },
+       },
+       
+       -- Custom colors (nil = auto-detect from theme)
+       colors = {
+         active = { fg = nil, bg = nil },
+         inactive = { fg = nil, bg = nil },
+       },
+       
+       -- Theme integration
+       theme_integration = {
+         base46 = false,     -- NvChad base46 (disabled by default)
+       },
+     })
 <
 
                                               *i3tab-config-options*
@@ -108,16 +119,22 @@ show_numbers~
     Show tab numbers in the tabline.
 
 separator_style~
-    Type: string
-    Default: `"round"`
-    Style of separators. Available options:
-    - "arrow" - Arrow-style separators (  )
-    - "round" - Rounded separators (  )
-    - "tab" - Tab-style separators (  )
-    - "dot" - Dot separators ( )
-    - "dot2" - Alternative dot separators ( )
-    - "ramp" - Ramp-style separators (  )
-    - "none" - No separators
+     Type: string
+     Default: `"round"`
+     Style of separators. Available options:
+     - "arrow" - Arrow-style separators (  )
+     - "round" - Rounded separators (  )
+     - "tab" - Tab-style separators (  )
+     - "dot" - Dot separators ( )
+     - "dot2" - Alternative dot separators ( )
+     - "ramp" - Ramp-style separators (  )
+     - "none" - No separators
+
+separators~
+     Type: table
+     Default: predefined separator characters
+     Custom separator characters for different styles. Each style has `left`
+     and `right` characters. You can override individual styles or all of them.
 
 position~
     Type: string

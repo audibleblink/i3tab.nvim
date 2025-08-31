@@ -2,22 +2,12 @@ local M = {}
 local config = require("i3tab.config")
 local highlights = require("i3tab.highlights")
 
-local separator_chars = {
-	arrow = { left = "", right = "" },
-	round = { left = "", right = "" },
-	tab = { left = "", right = "" },
-	dot = { left = "", right = "" },
-	dot2 = { left = "", right = "" },
-	ramp = { left = "", right = "" },
-	none = { left = "", right = "" },
-}
-
 function M.render()
 	local opts = config.options
 	local tabs = vim.api.nvim_list_tabpages()
 	local current = vim.api.nvim_get_current_tabpage()
 
-	local separator = separator_chars[opts.separator_style] or separator_chars.pill
+	local separator = opts.separators[opts.separator_style] or opts.separators.round
 
 	local s = "%#i3tabPad#"
 	if opts.position ~= "left" then

@@ -1,6 +1,15 @@
 local M = {}
 
 M.defaults = {
+	separators = {
+		arrow = { left = "", right = "" },
+		round = { left = "", right = "" },
+		tab = { left = "", right = "" },
+		dot = { left = "", right = "" },
+		dot2 = { left = "", right = "" },
+		ramp = { left = "", right = "" },
+		none = { left = "", right = "" },
+	},
 	padding = "",
 	spacing = " ",
 	show_numbers = true,
