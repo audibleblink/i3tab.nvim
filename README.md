@@ -39,12 +39,12 @@ require("i3tab").setup({
 	position = "center",
     -- custom separator characters (optional)
 	separators = {
-		arrow = { left = "", right = "" },
-		round = { left = "", right = "" },
-		tab = { left = "", right = "" },
-		dot = { left = "", right = "" },
-		dot2 = { left = "", right = "" },
-		ramp = { left = "", right = "" },
+		arrow = { left = "", right = "" },
+		round = { left = "", right = "" },
+		tab = { left = "", right = "" },
+		dot = { left = "", right = "" },
+		dot2 = { left = "", right = "" },
+		ramp = { left = "", right = "" },
 		none = { left = "", right = "" },
 	},
     -- color overrides, if not using theme_integration
