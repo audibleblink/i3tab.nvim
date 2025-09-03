@@ -27,6 +27,7 @@ A minimalist tabline plugin for Neovim with automatic theme integration.
 The plugin works out of the box without any configuration. All settings are optional:
 
 ```lua
+--defaults
 require("i3tab").setup({
 	show_numbers = true,
     -- spacing around numbers
@@ -57,7 +58,43 @@ require("i3tab").setup({
 		base46 = false,
 	},
 })
+
 ```
+
+### Separators
+
+**dot**
+![](https://github.com/user-attachments/assets/413f20c6-4528-45f8-b97c-08cac57c4bdd)
+
+**dot2**
+![](https://github.com/user-attachments/assets/677526d7-b093-4232-b5d8-e31883f2d18a)
+
+**arrow**
+![](https://github.com/user-attachments/assets/812f767f-2f4e-48c4-a141-d0f923684e32)
+
+**round**
+![](https://github.com/user-attachments/assets/4b9d1f0a-a440-4e62-86d6-3ea447893ca2)
+
+**tab**
+![](https://github.com/user-attachments/assets/3b926ddf-aa6a-479f-8ea9-588d54901b61)
+
+**ramp**
+![](https://github.com/user-attachments/assets/fd8b5b95-efb0-4641-8fad-e8c843c3270f)
+
+
+### Custom separators
+
+You can set a single `left` separator and leave `right` blank if you just want a tab marker and
+don't care about numbers
+
+```lua
+		opts = {
+			separator_style = "blah",
+			show_numbers = false,
+			separators = { blah = { left = "🦞", right = "" } },
+		},
+```
+
 
 ## 🗺️ Keymaps
 
