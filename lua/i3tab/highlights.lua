@@ -29,9 +29,16 @@ function M.setup_highlights()
 		colors = get_fallback_colors()
 	end
 
-	local bg = opts.colors.active.fg or colors.black
-	local fg = opts.colors.active.bg or colors.blue
-	local inactive = opts.colors.inactive.bg or colors.grey
+	local function eval_color(val)
+		if type(val) == "function" then
+			return val()
+		end
+		return val
+	end
+
+	local bg = eval_color(opts.colors.active.fg) or colors.black
+	local fg = eval_color(opts.colors.active.bg) or colors.blue
+	local inactive = eval_color(opts.colors.inactive.bg) or colors.grey
 
 	vim.api.nvim_set_hl(0, "i3tabActiveSym", { fg = fg, bg = bg })
 	vim.api.nvim_set_hl(0, "i3tabActiveText", { fg = bg, bg = fg })

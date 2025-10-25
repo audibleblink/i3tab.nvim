@@ -24,15 +24,20 @@ M.defaults = {
 	},
 }
 
-M.options = M.defaults
+M.options = vim.deepcopy(M.defaults)
 
 function M.setup(opts)
-	M.options = vim.tbl_deep_extend("force", M.defaults, opts or {})
+	M.options = vim.tbl_deep_extend("force", M.options, opts or {})
+	if M.options.separator_style == "dot" then
+		M.options.show_numbers = false
+	end
 	vim.validate({
 		show_numbers = { M.options.show_numbers, "boolean" },
 		separator_style = { M.options.separator_style, "string" },
 		position = { M.options.separator_style, "string" },
 	})
+
+	require("i3tab.highlights").setup_highlights()
 end
 
 return M
