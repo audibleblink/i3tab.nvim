@@ -17,12 +17,23 @@ local function get_fallback_colors()
 	}
 end
 
+local function get_auto_colors()
+	local fallback = get_fallback_colors()
+	return {
+		black = vim.api.nvim_get_hl(0, { name = "Normal" }).bg or fallback.black,
+		blue = vim.api.nvim_get_hl(0, { name = "TabLineSel" }).bg or fallback.blue,
+		grey = vim.api.nvim_get_hl(0, { name = "TabLineSel" }).fg or fallback.grey,
+	}
+end
+
 function M.setup_highlights()
 	local colors
 	local opts = config.options
 
 	if opts.theme_integration.base46 then
 		colors = get_base46_colors()
+	elseif opts.theme_integration.auto then
+		colors = get_auto_colors()
 	end
 
 	if not colors then

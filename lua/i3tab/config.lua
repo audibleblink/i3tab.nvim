@@ -21,6 +21,7 @@ M.defaults = {
 	},
 	theme_integration = {
 		base46 = false,
+		auto = true,
 	},
 }
 
